@@ -24,31 +24,33 @@ def exit():
     pygame.quit()
     sys.exit()
 
-mapping={ pygame.K_y: 74, pygame.K_s: 75, pygame.K_e: 76, pygame.K_4: 77,  
-          pygame.K_x: 77, pygame.K_d: 78, pygame.K_r: 79, pygame.K_5: 80,   
-          pygame.K_c: 80, pygame.K_f: 81, pygame.K_t: 82, pygame.K_6: 83,     
-          pygame.K_v: 83, pygame.K_g: 84, pygame.K_z: 85, pygame.K_7: 86,       
-          pygame.K_b: 86, pygame.K_h: 87, pygame.K_u: 88, pygame.K_8: 89,     
-          pygame.K_n: 89, pygame.K_j: 90, pygame.K_i: 91, pygame.K_9: 92,    
-          pygame.K_m: 92, pygame.K_k: 93, pygame.K_o: 94
+mapping={ 94: 74, 38: 75, 25: 76, 12: 77,  
+          52: 77, 39: 78, 26: 79, 13: 80,   
+          53: 80, 40: 81, 27: 82, 14: 83,     
+          54: 83, 41: 84, 28: 85, 15: 86,       
+          55: 86, 42: 87, 29: 88, 16: 89,     
+          56: 89, 43: 90, 30: 91, 17: 92,    
+          57: 92, 44: 93, 31: 94, 18: 95,
+          58: 95, 45: 95, 32: 96, 19: 97
         }
 
 screen = pygame.display.set_mode((400, 400))
-volume = 127
+volume = 12
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
         if event.type == pygame.KEYDOWN:
-            mapping.setdefault(event.key, 0)
-            note = mapping.get(event.key)-12
+            mapping.setdefault(event.scancode, 0)
+            note = mapping.get(event.scancode)-12
+            print(event)
             if note:
                 midi_out.note_on(note, volume) 
 
         if event.type == pygame.KEYUP:
-            mapping.setdefault(event.key, 0)
-            note = mapping.get(event.key)-12
+            mapping.setdefault(event.scancode, 0)
+            note = mapping.get(event.scancode)-12
             if note:
                 midi_out.note_off(note, volume) 
 
