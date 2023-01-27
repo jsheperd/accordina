@@ -62,6 +62,12 @@ mapping={  100:  62,  4:   63,  26:  64,  32:  65,
 screen = pygame.display.set_mode((400, 400))
 volume = 120
 
+def midi2human(note):
+    pos = note%12
+    val = ['c','c#','d','d#','e','f','f#','g','g#','a','a#','h'][pos]
+    print("midi note:", note, val)
+
+
 while music:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -69,8 +75,9 @@ while music:
         if event.type == pygame.KEYDOWN:
             mapping.setdefault(event.scancode, 0)
             note = mapping.get(event.scancode)
-            print(event)
+            #print(event)
             if note:
+                midi2human(note)
                 midi_out.note_on(note, volume) 
 
         if event.type == pygame.KEYUP:
