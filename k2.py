@@ -9,7 +9,9 @@ from goto import label, goto
 # =======================================
 GRAND_PIANO = 0
 CHURCH_ORGAN = 19
-instrument = CHURCH_ORGAN
+WHISTLE = 78
+ATMOSPHERE = 99
+instrument = ATMOSPHERE
 pygame.init()
 pygame.midi.init()
 print(pygame.midi.get_device_info(2))
